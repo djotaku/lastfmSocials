@@ -15,9 +15,11 @@ jobs:
           exclude:
             - goarch: arm64
               goos: windows
+            - goarch: amd64
+              gooes: darwin
       steps:
       - uses: actions/checkout@v4
-      - uses: wangyoucao577/go-release-action@v1.49
+      - uses: wangyoucao577/go-release-action@v1.53
         with:
           github_token: ${{ secrets.BUILDER_SECRET }}
           goos: ${{ matrix.goos }}
