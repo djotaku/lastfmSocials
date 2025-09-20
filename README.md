@@ -22,6 +22,8 @@ For last.fm get your key and secret at: https://www.last.fm/api/account/create (
 
 At $HOME/.config/lastfmSocials you should have a secrets.json file that looks like:
 
+If you're only using one or the other, just have junk data in the fields for the service you don't use.
+
 ```json
 {
         "lastfm":
