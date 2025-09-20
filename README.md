@@ -1,6 +1,6 @@
 # lastfmSocials
 
-Post your last.fm artist' listned stats to your favorite social media sites.
+Post your last.fm artists' listened stats to your favorite social media sites.
 
 ## Usage
 
