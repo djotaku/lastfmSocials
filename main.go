@@ -90,7 +90,7 @@ func assemblePost(artists topArtistsResult, period string) (string, string) {
 	for _, artist := range artists.Topartists.Artist {
 		potentialString := fmt.Sprintf("%s.%s (%s), ", artist.Attribute.Rank, artist.Name, artist.Playcount)
 		if len(postString)+len(potentialString) < 500 {
-			if len(postString)+len(potentialString) > 240 {
+			if len(postString)+len(potentialString) < 240 {
 				bskyString = postString
 			}
 			postString += potentialString
