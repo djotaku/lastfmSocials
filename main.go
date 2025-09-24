@@ -112,16 +112,15 @@ func main() {
 
 	weeklyArtistsJSON, err := lastfmgo.SubmitLastfmCommand(*period, ourSecrets.Lastfm.Key, ourSecrets.Lastfm.Username)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err) // will actually want to exit here if there's an error
 	}
 	var weeklyArtsts topArtistsResult
 	err = json.Unmarshal([]byte(weeklyArtistsJSON), &weeklyArtsts)
 	if err != nil {
-		fmt.Printf("Unable to marshall. %s", err)
+		fmt.Printf("Unable to marshall. %s", err) // will want to exit here if tehre's an error
 	}
 	mastodonString, bskyString := assemblePost(weeklyArtsts, *period)
-	//fmt.Printf("Your Bluesky post will be: %s\n\n", bskyString)
-	//fmt.Printf("Your Mastodon post will be: %s\n\n", mastodonString)
+
 	switch *whereToPost {
 	case "bluesky":
 		PostToBluesky(ourSecrets, debugMode, bskyString)
