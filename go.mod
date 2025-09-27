@@ -3,9 +3,9 @@ module github.com/djotaku/lastfmSocials
 go 1.24.7
 
 require (
-	github.com/adrg/xdg v0.5.0
+	github.com/adrg/xdg v0.5.3
 	github.com/djotaku/gobot-bsky v0.0.0-20250908193018-a70df82faaf3
-	github.com/djotaku/lastfmgo v0.0.0-20250918003951-d5b1a57d3b6c
+	github.com/djotaku/lastfmgo v0.2.1
 	github.com/mattn/go-mastodon v0.0.10
 )
 
@@ -56,7 +56,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
-	golang.org/x/sys v0.22.0 // indirect
+	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
 	lukechampine.com/blake3 v1.2.1 // indirect
 )

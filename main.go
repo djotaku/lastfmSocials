@@ -110,7 +110,17 @@ func main() {
 	whereToPost := flag.String("w", "all", "where to make the post. Use mastodon or bluesky")
 	flag.Parse()
 
-	weeklyArtistsJSON, err := lastfmgo.SubmitLastfmCommand(*period, ourSecrets.Lastfm.Key, ourSecrets.Lastfm.Username)
+	var lastfmPeriod string
+	switch *period {
+	case "weekly":
+		lastfmPeriod = "7day"
+	case "annual":
+		lastfmPeriod = "12month"
+	case "quarterly":
+		lastfmPeriod = "3month"
+	}
+
+	weeklyArtistsJSON, err := lastfmgo.UserGetTopArtists(ourSecrets.Lastfm.Username, lastfmPeriod, "50", "1", ourSecrets.Lastfm.Key)
 	if err != nil {
 		fmt.Println(err) // will actually want to exit here if there's an error
 	}
