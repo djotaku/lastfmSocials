@@ -105,19 +105,35 @@ func main() {
 	ourSecrets := getSecrets()
 	// parse CLI flags
 	register := flag.Bool("r", false, "register the Mastodon client")
-	period := flag.String("p", "weekly", "period to grab. Use: weekly, quarterly, or annual")
+	period := flag.String("p", "weekly", "period to grab. Use: weekly, quarterly, annual, or overall")
 	debugMode := flag.Bool("d", false, "debug mode")
 	whereToPost := flag.String("w", "all", "where to make the post. Use mastodon or bluesky")
 	flag.Parse()
 
-	weeklyArtistsJSON, err := lastfmgo.SubmitLastfmCommand(*period, ourSecrets.Lastfm.Key, ourSecrets.Lastfm.Username)
+	var lastfmPeriod string
+	switch *period {
+	case "weekly":
+		lastfmPeriod = "7day"
+	case "quarterly":
+		lastfmPeriod = "3month"
+	case "annual":
+		lastfmPeriod = "12month"
+	case "overall":
+		lastfmPeriod = "overall"
+	default:
+		panic("You did not enter a valid period. Try again. Use lastfmSocials -h for valid values.")
+	}
+
+	weeklyArtistsJSON, err := lastfmgo.UserGetTopArtists(ourSecrets.Lastfm.Username, lastfmPeriod, "50", "1", ourSecrets.Lastfm.Key)
 	if err != nil {
-		fmt.Println(err) // will actually want to exit here if there's an error
+		fmt.Println(err)
+		panic("Error trying to get the JSON, no point in continuing.")
 	}
 	var weeklyArtsts topArtistsResult
 	err = json.Unmarshal([]byte(weeklyArtistsJSON), &weeklyArtsts)
 	if err != nil {
-		fmt.Printf("Unable to marshall. %s", err) // will want to exit here if tehre's an error
+		fmt.Printf("Unable to marshall. %s", err)
+		panic("JSON couldn't be unmarshalled. To keep from posting garbage to socials, exiting here.")
 	}
 	mastodonString, bskyString := assemblePost(weeklyArtsts, *period)
 
