@@ -5,10 +5,10 @@ github.com/bluesky-social/indigo v0.0.0-20260903211445-41278964ec8e h1:7k21YL2GV
 github.com/bluesky-social/indigo v0.0.0-20260903211445-41278964ec8e/go.mod h1:W4skvdaV6jM88dflt/GHzE9nPXff17LdgWB3I6fMxiE=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
 github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
+github.com/danrusei/gobot-bsky v0.2.3 h1:oabLZ8BskzIW2tkWYyoHQj6bNLWTSVMSaJgVNT+ZewM=
+github.com/danrusei/gobot-bsky v0.2.3/go.mod h1:+3ayYvLecNyBKi6TuGfZj3Zf9yI8omLx1r80m/bNeqc=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/djotaku/gobot-bsky v0.0.0-20250908193018-a70df82faaf3 h1:1FSRynHWca15oKvnqm80lyx0XnvxC5/0IOzQJN9aCXU=
-github.com/djotaku/gobot-bsky v0.0.0-20250908193018-a70df82faaf3/go.mod h1:6pX6mJXMW8TIQO44KVDEs2QlyUbehKu7tFicgWKDsWI=
 github.com/djotaku/lastfmgo v0.2.2 h1:VGNPJG7OdDCpCv/B40DYLaOIHXreNg2ld1bjootUTxY=
 github.com/djotaku/lastfmgo v0.2.2/go.mod h1:eUUvOT3rASs0mnQcI4jnR7drvT3uJy8uNfKX0Y5212A=
 github.com/earthboundkid/versioninfo/v2 v2.24.1 h1:SJTMHaoUx3GzjjnUO1QzP3ZXK6Ee/nbWyCm58eY3oUg=
