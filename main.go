@@ -10,15 +10,11 @@ import (
 	"github.com/adrg/xdg"
 
 	"github.com/djotaku/lastfmgo"
+
+	"github.com/djotaku/lastfmSocials/types"
 )
 
-type secrets struct {
-	Lastfm   lastfmgo.Lastfm
-	Bsky     BlueskyConfig
-	Mastodon MastodonConfig
-}
-
-func getSecrets() secrets {
+func getSecrets() types.Secrets {
 	configFilePath, err := xdg.ConfigFile("lastfmSocials/secrets.json")
 	if err != nil {
 		fmt.Println("error")
@@ -38,7 +34,7 @@ func getSecrets() secrets {
 		}
 	}(settingsJson)
 	byteValue, _ := io.ReadAll(settingsJson)
-	var settings *secrets
+	var settings *types.Secrets
 	err = json.Unmarshal(byteValue, &settings)
 	if err != nil {
 		fmt.Println("Check that you do not have errors in your JSON file.")
