@@ -1,6 +1,6 @@
 module github.com/djotaku/lastfmSocials
 
-go 1.24.7
+go 1.26.8
 
 require (
 	github.com/adrg/xdg v0.5.3
