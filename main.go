@@ -10,15 +10,11 @@ import (
 	"github.com/adrg/xdg"
 
 	"github.com/djotaku/lastfmgo"
+
+	"github.com/djotaku/lastfmSocials/types"
 )
 
-type secrets struct {
-	Lastfm   lastfmgo.Lastfm
-	Bsky     BlueskyConfig
-	Mastodon MastodonConfig
-}
-
-func getSecrets() secrets {
+func getSecrets() types.Secrets {
 	configFilePath, err := xdg.ConfigFile("lastfmSocials/secrets.json")
 	if err != nil {
 		fmt.Println("error")
@@ -38,7 +34,7 @@ func getSecrets() secrets {
 		}
 	}(settingsJson)
 	byteValue, _ := io.ReadAll(settingsJson)
-	var settings *secrets
+	var settings *types.Secrets
 	err = json.Unmarshal(byteValue, &settings)
 	if err != nil {
 		fmt.Println("Check that you do not have errors in your JSON file.")
@@ -69,7 +65,7 @@ type artist struct {
 
 type topArtists struct {
 	Artist    []artist
-	Attribute overallAttribute `json:"@attr"`
+	Attribute overallAttribute `json:"@attr"` // this is currently unused by the program, but required for unmarshalling the JSON
 }
 
 type topArtistsResult struct {
@@ -124,18 +120,18 @@ func main() {
 		panic("You did not enter a valid period. Try again. Use lastfmSocials -h for valid values.")
 	}
 
-	weeklyArtistsJSON, err := lastfmgo.UserGetTopArtists(ourSecrets.Lastfm.Username, lastfmPeriod, "50", "1", ourSecrets.Lastfm.Key)
+	topArtistJSON, err := lastfmgo.UserGetTopArtists(ourSecrets.Lastfm.Username, lastfmPeriod, "50", "1", ourSecrets.Lastfm.Key)
 	if err != nil {
 		fmt.Println(err)
 		panic("Error trying to get the JSON, no point in continuing.")
 	}
-	var weeklyArtsts topArtistsResult
-	err = json.Unmarshal([]byte(weeklyArtistsJSON), &weeklyArtsts)
+	var topArtists topArtistsResult
+	err = json.Unmarshal([]byte(topArtistJSON), &topArtists)
 	if err != nil {
 		fmt.Printf("Unable to marshall. %s", err)
 		panic("JSON couldn't be unmarshalled. To keep from posting garbage to socials, exiting here.")
 	}
-	mastodonString, bskyString := assemblePost(weeklyArtsts, *period)
+	mastodonString, bskyString := assemblePost(topArtists, *period)
 
 	switch *whereToPost {
 	case "bluesky":

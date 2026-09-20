@@ -48,4 +48,17 @@ If you're only using one or the other, just have junk data in the fields for the
 }
 ```
 
+## Development
 
+Since the code is spread over a few files, be sure to do 
+
+```bash
+go run .
+
+go fix .
+
+go build .
+
+```
+
+To make sure it reads in all the files.

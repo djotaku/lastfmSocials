@@ -11,16 +11,11 @@ import (
 	"github.com/mattn/go-mastodon"
 
 	"github.com/adrg/xdg"
+
+	"github.com/djotaku/lastfmSocials/types"
 )
 
-type MastodonConfig struct {
-	Access_token string
-	Api_base_url string
-	ClientID     string
-	ClientSecret string
-}
-
-func registerClient(baseURL string) MastodonConfig {
+func registerClient(baseURL string) types.MastodonConfig {
 	appConfig := &mastodon.AppConfig{
 		Server:       baseURL,
 		ClientName:   "lastfmmastodon",
@@ -55,7 +50,7 @@ func registerClient(baseURL string) MastodonConfig {
 		log.Fatal(err)
 	}
 
-	var newMastodonConfig MastodonConfig
+	var newMastodonConfig types.MastodonConfig
 	newMastodonConfig.Access_token = config.AccessToken
 	newMastodonConfig.Api_base_url = baseURL
 	newMastodonConfig.ClientID = config.ClientID
@@ -64,7 +59,7 @@ func registerClient(baseURL string) MastodonConfig {
 	return newMastodonConfig
 }
 
-func PostToMastodon(ourSecrets secrets, debugMode *bool, register *bool, tootString string) {
+func PostToMastodon(ourSecrets types.Secrets, debugMode *bool, register *bool, tootString string) {
 	configFilePath, err := xdg.ConfigFile("lastfmSocials/Mastodon_secrets.json")
 	if err != nil {
 		fmt.Println("error")
@@ -73,7 +68,7 @@ func PostToMastodon(ourSecrets secrets, debugMode *bool, register *bool, tootStr
 	if *register {
 
 		newMastodonConfig := registerClient(ourSecrets.Mastodon.Api_base_url)
-		var newConfig secrets
+		var newConfig types.Secrets
 		newConfig.Lastfm = ourSecrets.Lastfm
 		newConfig.Mastodon = newMastodonConfig
 		jsonBytes, err := json.Marshal(newConfig)

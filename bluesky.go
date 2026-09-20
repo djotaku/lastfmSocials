@@ -5,15 +5,11 @@ import (
 	"fmt"
 
 	gobot "github.com/djotaku/gobot-bsky"
+
+	"github.com/djotaku/lastfmSocials/types"
 )
 
-type BlueskyConfig struct {
-	Handle string
-	Apikey string
-	Server string
-}
-
-func PostToBluesky(ourSecrets secrets, debugMode *bool, postString string) {
+func PostToBluesky(ourSecrets types.Secrets, debugMode *bool, postString string) {
 	ctx := context.Background()
 
 	if *debugMode {
