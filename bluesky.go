@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	gobot "github.com/djotaku/gobot-bsky"
+	gobot "github.com/danrusei/gobot-bsky"
 
 	"github.com/djotaku/lastfmSocials/types"
 )
